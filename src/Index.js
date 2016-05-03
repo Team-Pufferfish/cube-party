@@ -1,17 +1,31 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
-import App from './components/App';
-import PoweredBy from './components/Powered-by';
-import About from './components/About';
+import { add, remove } from './actions';
+import { createStore, compose } from 'redux';
+import  appstate  from './reducers';
 
-window.React = React;
+global.PIXI = require('../node_modules/phaser-shim/dist/pixi');
+global.Phaser = require('../node_modules/phaser-shim/dist/phaser');
 
-render(
-  (<Router history={hashHistory}>
-    <Route path="/" component={App}>
-      <Route path="/about" component={About} />
-      <Route path="/poweredby" component={PoweredBy} />
-    </Route>
-  </Router>), document.getElementById('content')
+let store = createStore(appstate,0,
+  window.devToolsExtension ? window.devToolsExtension() : f => f
 );
+
+var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
+
+var game = new Phaser.Game(800, 600, Phaser.Canvas, 'cube-party', { create });
+
+
+function setText(text) {
+  text.setText("- You have clicked -\n" + store.getState() + " times !");
+}
+
+function create() {
+  let text = game.add.text(game.world.centerX,game.world.centerY, "hello",style);
+  text.anchor.set(0.5);
+  text.inputEnabled = true;
+
+  store.subscribe(setText.bind(null,text));
+
+  text.events.onInputDown.add(() => {
+    store.dispatch(add())
+  });
+}

@@ -113,15 +113,9 @@ gulp.task('images', () => {
     .pipe(gulp.dest(paths.distImg));
 });
 
-gulp.task('lint', () => {
-  gulp.src(paths.srcLint)
-  .pipe(eslint())
-  .pipe(eslint.format());
-});
 
 gulp.task('watchTask', () => {
   gulp.watch(paths.srcCss, ['styles']);
-  gulp.watch(paths.srcLint, ['lint']);
 });
 
 gulp.task('deploy', () => {
@@ -130,7 +124,7 @@ gulp.task('deploy', () => {
 });
 
 gulp.task('watch', cb => {
-  runSequence('clean', ['browserSync', 'watchTask', 'watchify', 'styles', 'lint', 'images'], cb);
+  runSequence('clean', ['browserSync', 'watchTask', 'watchify', 'styles', 'images'], cb);
 });
 
 gulp.task('build', cb => {

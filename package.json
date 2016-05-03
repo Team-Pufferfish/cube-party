@@ -5,15 +5,11 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Granze/react-starterify"
+    "url": "https://github.com/Team-Pufferfish/cube-party"
   },
   "keywords": [
     "gulp",
-    "react",
     "browserify",
-    "seed",
-    "boilerplate",
-    "kickstarter",
     "ES6",
     "ES2015",
     "babel",
@@ -39,10 +35,11 @@
   },
   "homepage": "https://github.com/Granze/react-starterify",
   "dependencies": {
-    "history": "^2.1.0",
-    "react": "^15.0.1",
-    "react-dom": "^15.0.1",
-    "react-router": "^2.3.0"
+    "p2": "^0.7.1",
+    "phaser": "^2.4.7",
+    "phaser-shim": "^2.4.8",
+    "pixi": "^0.3.1",
+    "redux": "^3.5.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
@@ -77,7 +74,6 @@
     "postcss-nested": "^1.0.0",
     "postcss-simple-extend": "^1.0.0",
     "postcss-simple-vars": "^1.2.0",
-    "react-addons-test-utils": "^15.0.1",
     "rimraf": "^2.5.2",
     "run-sequence": "^1.1.5",
     "tap-nyan": "0.0.2",
